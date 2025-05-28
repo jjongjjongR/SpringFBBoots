@@ -1,0 +1,46 @@
+{{>layouts/header}}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height:70vh;">
+    <div class="card w-50 shadow-lg border-0" style="border-radius:20px;">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4" style="font-weight:700;">{{boot.modelName}} 리뷰 남기기</h2>
+            <form action="/boots/{{boot.id}}/review" method="post">
+                <div class="mb-3">
+                    <label class="form-label"><b>착화감</b> <span class="text-muted">( 매우 나쁨 1 ~ 5 매우 좋음 )</span></label>
+                    <input type="number" name="comfort" min="1" max="5" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label"><b>발볼</b> <span class="text-muted">( 매우 좁음 1 ~ 5 매우 넓음 )</span></label>
+                    <input type="number" name="width" min="1" max="5" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label"><b>길이감</b> <span class="text-muted">( 매우 짧음 1 ~ 5 매우 긺 )</span></label>
+                    <input type="number" name="length" min="1" max="5" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label"><b>터치감</b> <span class="text-muted">( 매우 나쁨 1 ~ 5 매우 좋음 )</span></label>
+                    <input type="number" name="touch" min="1" max="5" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label"><b>슈팅감</b> <span class="text-muted">( 매우 나쁨 1 ~ 5 매우 좋음 )</span></label>
+                    <input type="number" name="shooting" min="1" max="5" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label"><b>아웃솔 안정감</b> <span class="text-muted">( 매우 나쁨 1 ~ 5 매우 좋음 )</span></label>
+                    <input type="number" name="outsole" min="1" max="5" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label"><b>종합 별점</b> <span class="text-muted">(1 ~ 5)</span></label>
+                    <input type="number" name="overall" min="1" max="5" class="form-control" required>
+                </div>
+                <div class="text-center">
+                    <!-- btn-success 제거, btn-primary만 남김 -->
+                    <button type="submit" class="btn btn-primary">리뷰 등록</button>
+                    <a href="/boots/{{boot.id}}" class="btn btn-outline-secondary ms-2">취소</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{>layouts/footer}}

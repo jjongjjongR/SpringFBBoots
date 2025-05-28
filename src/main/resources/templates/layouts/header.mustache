@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <title>축구화 티어리스트</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body { background: #f6f8fa; }
+        .navbar-brand { font-weight: bold; letter-spacing: -1px; font-size: 1.3rem; }
+        .navbar { box-shadow: 0 2px 12px #e5e7eb; }
+        .input-group .form-control { border-radius: 8px 0 0 8px; }
+        .input-group .btn { border-radius: 0 8px 8px 0; }
+        .table th, .table td { vertical-align: middle !important; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">축구화 티어리스트</a>
+        <form action="/search" method="get" class="d-flex ms-auto" style="max-width:350px;">
+            <div class="input-group">
+                <input name="keyword" class="form-control" placeholder="축구화 검색">
+                <button class="btn btn-primary" type="submit">검색</button>
+            </div>
+        </form>
+    </div>
+</nav>
+<div class="container">

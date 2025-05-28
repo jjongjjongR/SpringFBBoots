@@ -1,0 +1,113 @@
+{{>layouts/header}}
+
+<!-- TOP3 영역 -->
+<div class="text-center mb-5">
+    <div class="d-flex justify-content-center align-items-end" style="gap: 40px;">
+        <!-- 2위 -->
+        {{#top3.1}}
+            <div>
+                <div style="font-size:1.2rem; font-weight:bold; color:#64748b;">2위</div>
+                <img src="/img/{{modelName}}.jpg" alt="{{modelName}}" style="width:130px; height:130px; object-fit:cover; border-radius:20px; box-shadow:0 2px 8px #cbd5e1;">
+                <div style="margin-top:5px;">{{modelName}}</div>
+                <div style="font-size:1.1rem; color:#f59e42;">⭐ {{overall}}점</div>
+            </div>
+        {{/top3.1}}
+        <!-- 1위 -->
+        {{#top3.0}}
+            <div>
+                <div style="font-size:1.5rem; font-weight:bold; color:gold;">1위</div>
+                <img src="/img/{{modelName}}.jpg" alt="{{modelName}}" style="width:170px; height:170px; object-fit:cover; border-radius:25px; box-shadow:0 4px 16px #fde68a;">
+                <div style="font-size:1.2rem; margin-top:6px;">{{modelName}}</div>
+                <div style="font-size:1.2rem; color:#f59e42;">⭐ {{overall}}점</div>
+            </div>
+        {{/top3.0}}
+        <!-- 3위 -->
+        {{#top3.2}}
+            <div>
+                <div style="font-size:1.1rem; font-weight:bold; color:#64748b;">3위</div>
+                <img src="/img/{{modelName}}.jpg" alt="{{modelName}}" style="width:110px; height:110px; object-fit:cover; border-radius:15px; box-shadow:0 2px 8px #cbd5e1;">
+                <div style="margin-top:5px;">{{modelName}}</div>
+                <div style="font-size:1.0rem; color:#f59e42;">⭐ {{overall}}점</div>
+            </div>
+        {{/top3.2}}
+    </div>
+</div>
+
+<h2 class="text-center mb-4" style="font-weight:800; letter-spacing:-1px;">축구화 티어표</h2>
+{{#errorMsg}}
+    <div class="alert alert-danger text-center">{{errorMsg}}</div>
+{{/errorMsg}}
+
+<form action="/search" method="get" class="mb-4 d-flex justify-content-center">
+    <div class="input-group" style="max-width:400px;">
+        <input name="keyword" class="form-control" placeholder="축구화 검색">
+        <button class="btn btn-primary" type="submit">검색</button>
+    </div>
+</form>
+
+<table class="table table-bordered text-center align-middle shadow-sm bg-white rounded">
+    <thead class="thead-light">
+    <tr>
+        <th>모델명</th>
+        <th>이미지</th>
+        <th>6각형 그래프</th>
+        <th>종합 별점</th>
+        <th>상세</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#boots}}
+        <tr>
+            <td>{{modelName}}</td>
+            <td>
+                <img src="/img/{{modelName}}.jpg"
+                     alt="{{modelName}}"
+                     style="width:200px; height:200px; object-fit:cover; border-radius:25px; box-shadow:0 2px 8px #e5e7eb;">
+            </td>
+            <td>
+                <div style="text-align: center;">
+                    <canvas id="radar-{{id}}" width="180" height="180"
+                            style="display: block; margin: 0 auto;"></canvas>
+                </div>
+                <script>
+                    var ctx = document.getElementById('radar-{{id}}').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'radar',
+                        data: {
+                            labels: ['착화감','발볼','길이감','터치감','슈팅감','아웃솔'],
+                            datasets: [{
+                                label: '평가',
+                                data: [
+                    parseFloat("{{avgComfort}}"),
+                    parseFloat("{{avgWidth}}"),
+                    parseFloat("{{avgLength}}"),
+                    parseFloat("{{avgTouch}}"),
+                    parseFloat("{{avgShooting}}"),
+                    parseFloat("{{avgOutsole}}")
+                    ],
+
+                    backgroundColor: 'rgba(54, 162, 235, 0.15)',
+                    borderColor: 'rgba(54, 162, 235, 0.8)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(54, 162, 235, 1)'
+                }]
+            },
+            options: {
+                responsive: false,
+                plugins: { legend: { display: false } },
+                scale: {
+                    min: 0,
+                    max: 5,
+                    ticks: { stepSize: 1, font: { size: 10 } }
+                }
+            }
+        });
+                </script>
+            </td>
+            <td style="font-weight:bold; color:#f59e42;">{{overall}} / 5</td>
+            <td><a class="btn btn-outline-primary btn-sm" href="/boots/{{id}}">상세</a></td>
+        </tr>
+    {{/boots}}
+    </tbody>
+</table>
+{{>layouts/footer}}
